@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from misc.utility.scons_hints import *
 import os
 import io
 import time
@@ -517,7 +518,11 @@ generate_code([\
         PresetDefine("scripts/presets/jsconfig.json.txt", "jsconfig.json"),
         PresetDefine("scripts/presets/gdignore.txt", ".gdignore"),
     ])
-    
+
+if quickjs_support is not None:
+    env_quickjs.disable_warnings()
+env_jsb.disable_warnings()
+
 # common parts
 env_jsb.add_source_files(module_obj, ["register_types.cpp", "jsb_project_preset.gen.cpp"])
 env_jsb.add_source_files(module_obj, "internal/*.cpp")

@@ -169,7 +169,7 @@ namespace jsb::impl
                 const CharString filename = p_filename.utf8();
 #endif
 #endif
-                v8::ScriptOrigin origin(isolate, v8::String::NewFromUtf8(isolate, filename, v8::NewStringType::kNormal, filename.length()).ToLocalChecked());
+                v8::ScriptOrigin origin(isolate, v8::String::NewFromUtf8(isolate, filename.get_data(), v8::NewStringType::kNormal, filename.length()).ToLocalChecked());
                 script = v8::Script::Compile(context, source, &origin);
             }
 
